@@ -13,4 +13,8 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\photo_compare\photo_compare.csproj" />
+  </ItemGroup>
+
 </Project>
