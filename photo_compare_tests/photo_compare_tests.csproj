@@ -18,22 +18,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="FileIO\TestFiles\incredible.jpg">
+    <None Update="TestFiles\elephant1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="FileIO\TestFiles\is this real.jpg">
+    <None Update="TestFiles\elephant2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="FileIO\TestFiles\mew.jpg">
+    <None Update="TestFiles\mew.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="FileIO\TestFiles\New Text Document.txt">
+    <None Update="TestFiles\New Text Document.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="FileIO\TestFiles\scary bear.JPG">
+    <None Update="TestFiles\scarybear.JPG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="FileIO\TestFiles\staring contest.jpg">
+    <None Update="TestFiles\scarybear2smallres.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -14,12 +14,6 @@ namespace photo_compare.FileIO
         /// <returns>List of File names inc paths</returns>
         public IList<string> GetImageFileListFromFolder(string folderPath);
 
-        /// <summary>
-        /// Compares the two supplied images
-        /// </summary>
-        /// <param name="image1"></param>
-        /// <param name="image2"></param>
-        /// <returns>True if they are considered to be comparable</returns>
-        public bool CompareTwoFiles(string image1, string image2);
+        
     }
 }
