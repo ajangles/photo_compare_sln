@@ -11,6 +11,7 @@ namespace photo_compare.FileIO
 {
     public class FileManager : IFileManager
     {
+        //TODO move to a config file, extend?
         private readonly string[] _imageExts = new[] { ".jpg", ".jpeg", ".bmp", ".gif", ".png" };
 
         private readonly IConsolePrinter _consolePrinter;
@@ -33,6 +34,7 @@ namespace photo_compare.FileIO
 
             try
             {
+                //search all subfolders for files and return new FileInfo object
                 var directoryFiles = Directory
                     .EnumerateFiles(folderPath, "*", SearchOption.AllDirectories)
                     .Where(f => _imageExts.Any(x => f.ToLower().EndsWith(x.ToLower())))
@@ -50,8 +52,6 @@ namespace photo_compare.FileIO
                         Image =  theImage
                     });
                 }
-
-                
 
                 return result;
 

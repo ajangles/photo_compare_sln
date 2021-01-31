@@ -29,11 +29,14 @@ namespace photo_compare
 
             var filesNotRead = true;
 
+            //Get input from user 
             while (filesNotRead)
             {
                 try
                 {
-                    var folderPath = _consolePrinter.GetEntryFromUser("Please enter the location of the merged and duplicated photos, or Q  and enter to quit \r\n\nEg c:\\merged photos\\ ");
+                    var folderPath = _consolePrinter.GetEntryFromUser(
+                        "Please enter the location of the merged and duplicated photos, or Q  and enter to quit \r\n\nEg c:\\merged photos\\ "
+                        );
 
                     if (folderPath.ToLower() == "q")
                     {
@@ -44,7 +47,10 @@ namespace photo_compare
 
                     while (!folderExists)
                     {
-                        folderPath = _consolePrinter.GetEntryFromUser("The folder entered was not found, please check and try again, or press Q and enter to quit");
+                        //Get valid input from user
+
+                        folderPath = _consolePrinter.GetEntryFromUser("The folder entered was not found, please check and try again, or press Q and enter to quit"
+                         );
 
                         if (folderPath.ToLower() == "q")
                         {
@@ -68,7 +74,11 @@ namespace photo_compare
 
                     while (userNotResponded)
                     {
-                        var response = _consolePrinter.GetEntryFromUser("\r\n" + $"{fileCount:##,###}" + " files have been found, high file counts can take a long time to sort for duplicates and will impede your system performance ! \r\nDo you want to continue ? (Y\\N)");
+                        var response = _consolePrinter.GetEntryFromUser(
+                            "\r\n" + 
+                            $"{fileCount:##,###}" + 
+                            " files have been found, high file counts can take a long time to sort for duplicates and will impede your system performance ! \r\nDo you want to continue ? (Y\\N)"
+                            );
 
                         if (response.ToLower() == "y" || response.ToLower() == "n")
                         {
@@ -96,6 +106,7 @@ namespace photo_compare
 
         private IList<ImageFile> FindImages(IImageManager imageManager, IList<ImageFile> fileList)
         {
+            //Find the images that resemble each other
             Parallel.ForEach(fileList, file =>
             {
                 foreach (var imageFile in fileList)
@@ -122,10 +133,16 @@ namespace photo_compare
 
         private void DisplayDuplicates(IList<ImageFile> images)
         {
+            //Alert user that images were found, then print to the console
+            
+            //TODO adapt for lists > the buffer of the console, eg write to file, pagination. 
 
             var imagesWithDuplicatesCount = images.Count();
 
-            _consolePrinter.GetEntryFromUser($"{imagesWithDuplicatesCount:##,###}" + " images have been found with duplicates, press enter to print them out to the console.");
+            _consolePrinter.GetEntryFromUser(
+                $"{imagesWithDuplicatesCount:##,###}" + 
+                " images have been found with duplicates, press enter to print them out to the console."
+                );
 
             foreach (var imageFile in images)
             {
@@ -139,6 +156,7 @@ namespace photo_compare
 
         private void Stop()
         {
+            //Servus
             Environment.Exit(0);
         }
     }

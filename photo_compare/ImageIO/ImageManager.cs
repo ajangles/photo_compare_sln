@@ -6,7 +6,7 @@ namespace photo_compare.ImageIO
 {
     public class ImageManager : IImageManager
     {
-        const int Tolerance = 10;
+        const int Tolerance = 10; //tolerance for comparing pixels from each image, 10 appears to work well but this could be adapted in the future
         const int ErrorCode = 666;
         private readonly IConsolePrinter _consolePrinter;
 
@@ -33,7 +33,6 @@ namespace photo_compare.ImageIO
                 lock (inputImageOne)
                 {
                     imageOne = new Bitmap(inputImageOne, new Size(128, 128));
-
                 }
 
                 lock (inputImageTwo)
@@ -41,6 +40,7 @@ namespace photo_compare.ImageIO
                     imageTwo = new Bitmap(inputImageTwo, new Size(128, 128));
                 }
 
+                //Create / merge images to the same height/width
 
                 int imageOneSize = imageOne.Width * imageOne.Height;
                 int imageTwoSize = imageTwo.Width * imageTwo.Height;
@@ -57,6 +57,8 @@ namespace photo_compare.ImageIO
                     imageOne = new Bitmap(imageOne, imageTwo.Size);
                     imageThree = new Bitmap(imageTwo.Width, imageTwo.Height);
                 }
+
+                //compare pixels for similarity 
 
                 for (int x = 0; x < imageOne.Width; x++)
                 {
@@ -83,6 +85,8 @@ namespace photo_compare.ImageIO
                             difference++;
                     }
                 }
+
+                //return likely hood they're the same
 
                 var usedSize = imageOneSize > imageTwoSize ? imageTwoSize : imageOneSize;
                 var result = difference * 100 / usedSize;
