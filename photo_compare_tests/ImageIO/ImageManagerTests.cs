@@ -29,8 +29,10 @@ namespace photo_compare.ImageIO.Tests
             var expectedBearResult = 6;
 
             var bearResult = _imageManager.CompareTwoImages(scaryBearOne, scaryBearTwo);
+            var bearResult2 = _imageManager.CompareTwoImages(scaryBearTwo, scaryBearOne);
 
             Assert.Equal(expectedBearResult, bearResult);
+            Assert.Equal(expectedBearResult, bearResult2);
 
 
             var elephantOne = new Bitmap(@"./TestFiles/elephant1.jpg");

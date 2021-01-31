@@ -5,38 +5,48 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using photo_compare.Models;
 
 namespace photo_compare.FileIO.Tests
 {
     public class FileManagerTests
     {
-        private string testFilesLocation = "./Utilities/TestFiles";
-        private readonly IList<string> _fileList;
+        private string testFilesLocation = "./TestFiles";
         private readonly IFileManager _fileManager;
 
         public FileManagerTests()
         {
             _fileManager = new FileManager();
-
-            _fileList = _fileManager.GetImageFileListFromFolder(testFilesLocation);
         }
 
         [Fact()]
         public void GetImageFileListFromFolderTest()
         {
-            Assert.NotEqual(10, _fileList.Count);
+            var fileList = _fileManager.GetImageFileListFromFolder(testFilesLocation);
 
-            Assert.Equal(5, _fileList.Count);
+            Assert.NotEqual(10, fileList.Count);
 
-            var mew = _fileList.Any(f => f.EndsWith("mew.jpg"));
+            Assert.Equal(5, fileList.Count);
+
+            var mew = fileList.Any(f => f.Name.EndsWith("mew.jpg"));
 
             Assert.True(mew);
 
-            var newTextDocument = _fileList.Any(f => f.EndsWith(".txt"));
+            var newTextDocument = fileList.Any(f => f.Name.EndsWith(".txt"));
 
             Assert.False(newTextDocument);
         }
 
-        
+        [Fact()]
+        public void DoesFolderExistTest()
+        {
+            var checkCDrive = _fileManager.DoesFolderExist("c:\\");
+
+            Assert.True(checkCDrive);
+
+            var checkJibberishFolder = _fileManager.DoesFolderExist("C:\\itisveryunlikelythatIexist");
+
+            Assert.False(checkJibberishFolder);
+        }
     }
 }
